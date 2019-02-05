@@ -1,2 +1,2 @@
 # Receptor
-Receptor app codebade
+Receptor webapp codebase
