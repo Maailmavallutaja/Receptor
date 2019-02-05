@@ -10,10 +10,14 @@ var removeButton = document.getElementById('removeIngredientButton');
 
 function displayIngredient(localIngredient) {
     
-    var displayLocalIngredients = document.createElementById('p'); //create the element
+    var displayLocalIngredients = document.createElement('p'); //create the element
     displayLocalIngredients.innerHTML = localIngredient; //declare the content of the element
-    document.getElementById('ingredientsDisplay').appendChild(subHeading); // add created HTML element to document
-    var createRemoveButton = document.createElementById()
+    document.getElementById('ingredientsDisplay').appendChild(displayLocalIngredients); // add created HTML element to document
+    var createRemoveButton = document.createElement()
+}
+
+function getIngredientId(){
+    
 }
 //fuction to add ingredient to localIngredients array
 addButton.onclick = function addIngredient(ingredient) {
@@ -49,3 +53,11 @@ class Ingredient{
 // So I have functions to add new item to ingredients array and to display it. I want to add a button to the display that you can press
 // in order to remove the item from display. How can I define that this particular button click will remove this particular HTML tag form the screen and also string from array.
 
+/*
+Necessary functions:
+- Create ingredient Id
+- Create form for ingredient
+- Onsubmit of form
+- add ingredient to array(name, id)
+- remove ingredient from array
+-
