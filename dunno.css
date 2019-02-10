@@ -1,5 +1,12 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
-    background-image: url("bg.png")
+  background-image: url("bg.png");
+  font-family: 'Montserrat', sans-serif;
+  /* font-family: 'Lato', sans-serif;   */
+  /* Use those two fonts */
 }
 
 .mySideNav {
@@ -14,11 +21,6 @@ body {
     right: 16px;
     
 }
-
-* {
-    box-sizing: border-box;
-}
-  
   form.example input[type=text] {
     padding: 10px;
     font-size: 17px;
@@ -26,7 +28,7 @@ body {
     float: left;
     width: 80%;
     background: #f1f1f1;
-  }
+  } 
   
   form.example button {
     float: left;
@@ -48,16 +50,9 @@ body {
     content: "";
     clear: both;
     display: table;
-}
-body {
-  font-family: Arial;
-}
+  }
 
-* {
-  box-sizing: border-box;
-}
-
-form.example input[type=text] {
+  form.example input[type=text] {
   padding: 10px;
   font-size: 17px;
   border: 1px solid grey;
@@ -87,45 +82,54 @@ form.example::after {
   clear: both;
   display: table;
 }
-</style> <style>
-            body {
-              font-family: "Lato", sans-serif;
-            }
-    .sidenav {
-  height: 100%;
-  width: 0;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: #111;
-  overflow-x: hidden;
-  transition: 0.5s;
-  padding-top: 60px;
+
+
+
+.sidenav {
+height: 100%;
+width: 0;
+position: fixed;
+z-index: 1;
+top: 0;
+left: 0;
+background-color: #111;
+overflow-x: hidden;
+transition: 0.5s;
+padding-top: 60px;
 }
 
 .sidenav a {
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #818181;
-  display: block;
-  transition: 0.3s;
+padding: 8px 8px 8px 32px;
+text-decoration: none;
+font-size: 25px;
+color: #818181;
+display: block;
+transition: 0.3s;
 }
 
 .sidenav a:hover {
-  color: #f1f1f1;
+color: #f1f1f1;
 }
 
 .sidenav .closebtn {
-  position: absolute;
-  top: 0;
-  left: 25px;
-  font-size: 36px;
-  margin-left: 50px;
+position: absolute;
+top: 0;
+left: 25px;
+font-size: 36px;
+margin-left: 50px;
 }
 
 @media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
+.sidenav {padding-top: 15px;}
+.sidenav a {font-size: 18px;}
+}
+
+.logo{
+  font-size: 36px;
+  font-family: 'Monsterrat', sans-serif;
+}
+
+/* Add recipe page */
+#ingredients{
+  
 }
