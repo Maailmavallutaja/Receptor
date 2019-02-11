@@ -10,6 +10,12 @@
    <style>
 
 </style>
+ <script language="JavaScript">
+        function showInput() {
+            document.getElementById('display').innerHTML = 
+                        document.getElementById("user_input").value;
+        }
+      </script>
 </head>
 <body>
 
@@ -22,6 +28,30 @@
   <a href="#">Clients</a>
   <a href="#">Contact</a> -->
   <p>Search</p>
+<div class="container">
+        <div class="container">
+                <div class="row">
+                  <div class="col-sm">
+                    One of three columns
+                  </div>
+                  <div class="col-sm">
+                    One of three columns
+                  </div>
+                  <div class="col-sm">
+                    One of three columns
+                  </div>
+                </div>
+                <form>
+                        <label><b>Enter a Message</b></label>
+                        <input type="text" name="message" id="user_input">
+                      </form>
+                     
+                      <input type="submit" onclick="showInput();"><br/>
+                      <label>Your input: </label>
+                      <p><span id='display'></span></p>
+                    </body>
+              </div>
+</div>
 <form class="example" action="/action_page.php" style="margin:auto;max-width:300px">
   <input type="text" placeholder="Search.." name="search2">
   <button type="submit"><i class="fa fa-search"></i></button>
