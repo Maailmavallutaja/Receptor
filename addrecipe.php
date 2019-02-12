@@ -15,6 +15,8 @@
 </head>
 <body>
 
+<body>
+
 <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
    
@@ -39,56 +41,77 @@
 <div class="addRecipe">
 <?php //post recipe
 
-    //!add recipe name, image(optinal)
+    //!add recipe name, image(optional)
+    //! image type in database
+    // https://stackoverflow.com/questions/9153224/how-to-limit-file-upload-type-file-size-in-php 
     //connect to database
     ini_set('display_errors', 'on');
     $db = new PDO('mysql:host=127.0.0.1:3306;dbname=receptor', 'root', '');
 
-    if(isset($_FILES['upload']) === true //if theres file to upload
-        && !empty($_POST)){ // if fields are not empty
-
-        $files = $_POST['upload'];
-        echo '<pre>', print_r($files, true), '</pre>';
-
-
+    if(!empty($_POST)){ // if fields are not empty
+        
+        //$files = $_POST['upload_img'];
+        //echo '<pre>', print_r($files, true), '</pre>';
+        
+        $recipeName = $_POST['recipeName'];
         $prepTime = $_POST['prepTime'];
         $cookTime = $_POST['cookTime'];
         $instructions = $_POST['instructions'];
         $ingredients = $_POST['ingredients'];
         $optAddOns = $_POST['optAddOns'];
+     //   $image = addslashes(file_get_contents($_FILES['upload_img']['tmp_name'])); //SQL Injection defence!
+     //   $image_name = addslashes($_FILES['upload_img']['name']);  
         
-
+        if(isset($_FILES['upload_img']) === true &&
+            (($_FILES["upload_img"]["type"] == "image/gif") || 
+            ($_FILES["upload_img"]["type"] == "image/jpeg") || 
+            ($_FILES["upload_img"]["type"] == "image/jpg") ||
+            ($_FILES["upload_img"]["type"] == "image/pjpeg") || 
+            ($_FILES["upload_img"]["type"] == "image/png") &&
+            ($_FILES["upload_img"]["size"] < 2097152)) ){
+            $image = addslashes(file_get_contents($_FILES['upload_img']['tmp_name'])); //SQL Injection defence!
+            echo '<pre>', print_r($image, true), '</pre>';
+            $imageName = addslashes($_FILES['upload_img']['name']); 
+            } else {
+                echo '<script>alert("Please upload image of gif/jpeg/pjpeg/png type and of size under 2 MB");</script>';
+                die();
+        };
+        
         //Prepare valued to align with data table columns
         $recipe = $db->prepare('
-        INSERT INTO recipes (prepTime, cookTime, instructions, ingredients, optAddOns)
-        VALUES (:prepTime, :cookTime, :instructions, :ingredients, :optAddOns)
+        INSERT INTO recipes (recipeName, prepTime, cookTime, instructions, ingredients, optAddOns, image, imageName)
+        VALUES (:recipeName, :prepTime, :cookTime, :instructions, :ingredients, :optAddOns, :image, :imageName)
         ');
 
         //assign values to the keys and execute
         $recipe -> execute ([
+            'recipeName' => $recipeName,
             'prepTime' => $prepTime,
             'cookTime' => $cookTime,
-            'instructions' => $instrutions,
+            'instructions' => $instructions,
             'ingredients' => $ingredients,
-            'optAddOns' => $optAddOns
+            'optAddOns' => $optAddOns,
+            'image' => $image,
+            'imageName' => $imageName
         ]);
         
     }
+    
 ?>
 
 <!-- Form for recipe-->
 <form action="addrecipe.php" method='POST' enctype='multipart/form-data'>
     <div class="form-group">
-        <label for='upload[]'>Upload Image</label>
-        <input type="file" name="upload[]" id="">
+        <label for='recipeName'>Name</label>
+        <input type="text" name="recipeName" id="recipeName">
     </div>
     <div class="form-group">
         <label for='prepTime'>Preparations Time</label>
-        <input class="form-control" type='number' name='prepTime' >
+        <input class="form-control" type='number' name='prepTime' id='cookTime'>
     </div>
     <div class="form-group">
         <label for='cookTime'>Cooking Time</label>
-        <input class="form-control" type='number' name='cookTime' >
+        <input class="form-control" type='number' name='cookTime' id='cookTime' >
     </div>
     <div class="form-group">
         <label for ='instructions'>Cooking instructions</label>
@@ -99,10 +122,16 @@
         <input class="form-control" type="text" name="ingredients" id="ingredients">
     </div>
     <div class="form-group">
-        <label for ='optAddOns'>Optional additional ingredients</label>
+        <label for ='optAddOns'>Additional ingredients</label>
         <input class="form-control" type="text" name="optAddOns" id="optAddOns">
+        <small class='form-text text-muted'>Adding additional ingredients is optional</small>
     </div>
-    <button class="btn btn-primary" type="submit" value="Send">Send</button>
+    <div class="form-group">
+        <label for='upload_img'>Upload Image</label>
+        <input type="file" name="upload_img" id="upload_img">
+        <small class='form-text text-muted'>Adding image is optional. Maximum file size is </small>
+    </div>
+    <button class="btn btn-primary" type="submit" >Send</button>
 
 </form>
 </div>
@@ -116,7 +145,7 @@
     document.getElementById("mySidenav").style.width = "0";
   }  
 </script>
-<!-- bootstrap CS -->
+<!-- bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script> 
