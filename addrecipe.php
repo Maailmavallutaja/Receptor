@@ -69,18 +69,19 @@
             ($_FILES["upload_img"]["type"] == "image/pjpeg") || 
             ($_FILES["upload_img"]["type"] == "image/png") &&
             ($_FILES["upload_img"]["size"] < 2097152)) ){
-            $image = addslashes(file_get_contents($_FILES['upload_img']['tmp_name'])); //SQL Injection defence!
-            echo '<pre>', print_r($image, true), '</pre>';
-            $imageName = addslashes($_FILES['upload_img']['name']); 
+                $imageName = addslashes($_FILES['upload_img']['name']); 
+                $targetDir = "uploads/";
+                $fileName = basename($_FILES["upload_img"]["name"]);
+                $targetFilePath = $targetDir . $imageName;
+                move_uploaded_file($_FILES["upload_img"]["tmp_name"], $targetFilePath);
             } else {
                 echo '<script>alert("Please upload image of gif/jpeg/pjpeg/png type and of size under 2 MB");</script>';
                 die();
         };
-        
-        //Prepare valued to align with data table columns
+
         $recipe = $db->prepare('
-        INSERT INTO recipes (recipeName, prepTime, cookTime, instructions, ingredients, optAddOns, image, imageName)
-        VALUES (:recipeName, :prepTime, :cookTime, :instructions, :ingredients, :optAddOns, :image, :imageName)
+        INSERT INTO recipes (recipeName, prepTime, cookTime, instructions, ingredients, optAddOns, imageName)
+        VALUES (:recipeName, :prepTime, :cookTime, :instructions, :ingredients, :optAddOns, :imageName)
         ');
 
         //assign values to the keys and execute
@@ -91,7 +92,6 @@
             'instructions' => $instructions,
             'ingredients' => $ingredients,
             'optAddOns' => $optAddOns,
-            'image' => $image,
             'imageName' => $imageName
         ]);
         
@@ -100,7 +100,7 @@
 ?>
 
 <!-- Form for recipe-->
-<form action="addrecipe.php" method='POST' enctype='multipart/form-data'>
+<form action="" method='POST' enctype='multipart/form-data'>
     <div class="form-group">
         <label for='recipeName'>Name</label>
         <input type="text" name="recipeName" id="recipeName">
@@ -120,20 +120,23 @@
     <div class="form-group">
         <label for ='ingredients'>Ingredients</label>
         <input class="form-control" type="text" name="ingredients" id="ingredients">
+        <small class='form-text'>Please separate with space</small>
+
     </div>
     <div class="form-group">
         <label for ='optAddOns'>Additional ingredients</label>
         <input class="form-control" type="text" name="optAddOns" id="optAddOns">
-        <small class='form-text text-muted'>Adding additional ingredients is optional</small>
+        <small class='form-text'>Adding additional ingredients is optional</small>
     </div>
     <div class="form-group">
-        <label for='upload_img'>Upload Image</label>
-        <input type="file" name="upload_img" id="upload_img">
-        <small class='form-text text-muted'>Adding image is optional. Maximum file size is </small>
+        <input type="file" name="upload_img">
+        <small class='form-text'>Adding image is optional. Maximum file size is 2MB</small>
     </div>
+     
     <button class="btn btn-primary" type="submit" >Send</button>
+    </form>
 
-</form>
+
 </div>
 <script>
   //Navigation open/close
