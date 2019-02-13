@@ -4,9 +4,6 @@ body {
     /* font-family: "Lato", sans-serif; */
 }
 
-* {
-  box-sizing: border-box;
-}
 .mySideNav {
     position: absolute;
     bottom: 8px;
@@ -15,7 +12,7 @@ body {
 .sidenav {
     position: absolute;
     bottom: 8px;
-    right: 16px;   
+    right: 16px;  
 }
 
   form.example input[type=text] {
@@ -48,6 +45,7 @@ body {
     clear: both;
     display: table;
 }
+
 form.example input[type=text] {
   padding: 10px;
   font-size: 17px;
@@ -78,7 +76,8 @@ form.example::after {
   clear: both;
   display: table;
 }
-    .sidenav {
+
+.sidenav {
   height: 100%;
   width: 0;
   position: fixed;
@@ -90,6 +89,7 @@ form.example::after {
   transition: 0.5s;
   padding-top: 60px;
 }
+
 .sidenav a {
   padding: 8px 8px 8px 32px;
   text-decoration: none;
@@ -116,6 +116,7 @@ form.example::after {
   .sidenav a {font-size: 18px;}
 }
 
+/* for section hide */
 #container{
   overflow: hidden;
 }

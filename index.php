@@ -45,7 +45,98 @@
   </section>
 
   <section id="addRecipeSection">
-      This is addrecipe
+    <?php 
+
+    //!add recipe name, image(optional)
+    //! image type in database
+    // https://stackoverflow.com/questions/9153224/how-to-limit-file-upload-type-file-size-in-php 
+    //connect to database
+    ini_set('display_errors', 'on');
+    $db = new PDO('mysql:host=127.0.0.1:3306;dbname=receptor', 'root', '');
+
+    if(!empty($_POST)){ // if fields are not empty
+      
+      $recipeName = $_POST['recipeName'];
+      $prepTime = $_POST['prepTime'];
+      $cookTime = $_POST['cookTime'];
+      $instructions = $_POST['instructions'];
+      $ingredients = $_POST['ingredients'];
+      $optAddOns = $_POST['optAddOns'];
+      
+      if(isset($_FILES['upload_img']) === true && //if there is an image
+          (($_FILES["upload_img"]["type"] == "image/gif") || //check type
+          ($_FILES["upload_img"]["type"] == "image/jpeg") || 
+          ($_FILES["upload_img"]["type"] == "image/jpg") ||
+          ($_FILES["upload_img"]["type"] == "image/pjpeg") || 
+          ($_FILES["upload_img"]["type"] == "image/png") &&
+          ($_FILES["upload_img"]["size"] < 2097152)) ){ // if file size is under 2 MB
+              $imageName = addslashes($_FILES['upload_img']['name']); 
+              $targetDir = "uploads/";
+              $fileName = basename($_FILES["upload_img"]["name"]);
+              $targetFilePath = $targetDir . $imageName;
+              move_uploaded_file($_FILES["upload_img"]["tmp_name"], $targetFilePath);
+          } else {
+              echo '<script>alert("Please upload image of gif/jpeg/pjpeg/png type and of size under 2 MB");</script>';
+              exit();
+      };
+
+      $recipe = $db->prepare('
+      INSERT INTO recipes (recipeName, prepTime, cookTime, instructions, ingredients, optAddOns, imageName)
+      VALUES (:recipeName, :prepTime, :cookTime, :instructions, :ingredients, :optAddOns, :imageName)
+      ');
+
+      //assign values to the keys and execute
+      $recipe -> execute ([
+          'recipeName' => $recipeName,
+          'prepTime' => $prepTime,
+          'cookTime' => $cookTime,
+          'instructions' => $instructions,
+          'ingredients' => $ingredients,
+          'optAddOns' => $optAddOns,
+          'imageName' => $imageName
+      ]);
+      
+    }
+
+    ?>
+
+    <!-- Form for recipe-->
+    <form action="" method='POST' enctype='multipart/form-data'>
+    <div class="form-group">
+        <label for='recipeName'>Name</label>
+        <input type="text" name="recipeName" id="recipeName">
+    </div>
+    <div class="form-group">
+        <label for='prepTime'>Preparations Time</label>
+        <input class="form-control" type='number' name='prepTime' id='cookTime'>
+    </div>
+    <div class="form-group">
+        <label for='cookTime'>Cooking Time</label>
+        <input class="form-control" type='number' name='cookTime' id='cookTime' >
+    </div>
+    <div class="form-group">
+        <label for ='instructions'>Cooking instructions</label>
+        <input class="form-control" type="textarea" name="instructions" id="instructions">
+    </div>
+    <div class="form-group">
+        <label for ='ingredients'>Ingredients</label>
+        <input class="form-control" type="text" name="ingredients" id="ingredients">
+        <small class='form-text'>Please separate with space</small>
+
+    </div>
+    <div class="form-group">
+        <label for ='optAddOns'>Additional ingredients</label>
+        <input class="form-control" type="text" name="optAddOns" id="optAddOns">
+        <small class='form-text'>Adding additional ingredients is optional</small>
+    </div>
+    <div class="form-group">
+        <input type="file" name="upload_img">
+        <small class='form-text'>Adding image is optional. Maximum file size is 2MB</small>
+    </div>
+    
+    <button class="btn btn-primary" type="submit" >Send</button>
+    </form>
+
   </section>
 
   <section id='aboutSection'>
@@ -67,38 +158,38 @@
   
   //Section switch hidden/visible
   // To do -> make into for loop
-$(document).ready(function() {
-    $('#searchRecipe').on('click', function() {
-        $('#searchRecipeSection').show();
-        $('#addRecipeSection').hide();
-        $('#aboutSection').hide();
-        $('#donationSection').hide();
-        closeNav();
-    });
+    $(document).ready(function() {
+        $('#searchRecipe').on('click', function() {
+            $('#searchRecipeSection').show();
+            $('#addRecipeSection').hide();
+            $('#aboutSection').hide();
+            $('#donationSection').hide();
+            closeNav();
+        });
 
-    $('#addRecipe').on('click', function() {
-      $('#searchRecipeSection').hide();
-      $('#addRecipeSection').show();
-      $('#aboutSection').hide();
-      $('#donationSection').hide();
-      closeNav();
-    });
+        $('#addRecipe').on('click', function() {
+          $('#searchRecipeSection').hide();
+          $('#addRecipeSection').show();
+          $('#aboutSection').hide();
+          $('#donationSection').hide();
+          closeNav();
+        });
 
-    $('#about').on('click', function() {
-      $('#searchRecipeSection').hide();
-      $('#addRecipeSection').hide();
-      $('#aboutSection').show();
-      $('#donationSection').hide();
-      closeNav();
+        $('#about').on('click', function() {
+          $('#searchRecipeSection').hide();
+          $('#addRecipeSection').hide();
+          $('#aboutSection').show();
+          $('#donationSection').hide();
+          closeNav();
+        });
+        $('#donate').on('click', function() {
+          $('#searchRecipeSection').hide();
+          $('#addRecipeSection').hide();
+          $('#aboutSection').hide();
+          $('#donationSection').show();
+          closeNav();
+        });        
     });
-    $('#donate').on('click', function() {
-      $('#searchRecipeSection').hide();
-      $('#addRecipeSection').hide();
-      $('#aboutSection').hide();
-      $('#donationSection').show();
-      closeNav();
-    });        
-});
 
 </script>
 <!-- bootstrap CS -->
