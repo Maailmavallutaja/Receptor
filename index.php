@@ -9,34 +9,52 @@
     <link href="https://fonts.googleapis.com/css?family=Lato|Montserrat" rel="stylesheet">
     <!-- bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    
+    <!-- Jquery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
     <title>Receptor</title>
 
 </head>
 <body>
 
 <body>
-
+<!-- navigation-->
 <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a href="#">Recipies</a>
-  <a href="addrecipe.php">Add a recipe</a>
-  <!-- <a href="#">My Shelf</a>
-  <a href="#">About</a>
-  <a href="#">Contact</a>
-  <a href="#">Donate</a> -->
+  <a href="#searchRecipe" id='searchRecipe'>Search a recipe</a>
+  <a href="#addrecipe" id='addRecipe'>Add a recipe</a>
+  <a href="#about" id='about'>About</a>
+  <a href="#donate" id='donate'>Donate</a>
+<!-- no need currently
   <p>Search</p>
   <form class="example" action="/action_page.php" style="margin:auto;max-width:300px">
     <input type="text" placeholder="Search.." name="search2">
     <button type="submit"><i class="fa fa-search"></i></button>
   </form>
-
+-->
 </div>
-<div class="container">
+<div id="container">
   <h2 class='logo'>Receptor</h2>
-  <p>Click on the element below to open the side navigation menu.</p>
   <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
-</div>
+
+
+  <section id="searchRecipeSection">
+      This is search
+  </section>
+
+  <section id="addRecipeSection">
+      This is addrecipe
+  </section>
+
+  <section id='aboutSection'>
+    About information
+  </section>
+
+  <section id='donationSection'>
+    information about donation
+  </section>
 <script>
   //Navigation open/close
   function openNav() {
@@ -46,6 +64,42 @@
   function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
   }
+  
+  //Section switch hidden/visible
+  // To do -> make into for loop
+$(document).ready(function() {
+    $('#searchRecipe').on('click', function() {
+        $('#searchRecipeSection').show();
+        $('#addRecipeSection').hide();
+        $('#aboutSection').hide();
+        $('#donationSection').hide();
+        closeNav();
+    });
+
+    $('#addRecipe').on('click', function() {
+      $('#searchRecipeSection').hide();
+      $('#addRecipeSection').show();
+      $('#aboutSection').hide();
+      $('#donationSection').hide();
+      closeNav();
+    });
+
+    $('#about').on('click', function() {
+      $('#searchRecipeSection').hide();
+      $('#addRecipeSection').hide();
+      $('#aboutSection').show();
+      $('#donationSection').hide();
+      closeNav();
+    });
+    $('#donate').on('click', function() {
+      $('#searchRecipeSection').hide();
+      $('#addRecipeSection').hide();
+      $('#aboutSection').hide();
+      $('#donationSection').show();
+      closeNav();
+    });        
+});
+
 </script>
 <!-- bootstrap CS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
