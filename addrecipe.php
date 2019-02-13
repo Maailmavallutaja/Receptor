@@ -50,25 +50,20 @@
 
     if(!empty($_POST)){ // if fields are not empty
         
-        //$files = $_POST['upload_img'];
-        //echo '<pre>', print_r($files, true), '</pre>';
-        
         $recipeName = $_POST['recipeName'];
         $prepTime = $_POST['prepTime'];
         $cookTime = $_POST['cookTime'];
         $instructions = $_POST['instructions'];
         $ingredients = $_POST['ingredients'];
         $optAddOns = $_POST['optAddOns'];
-     //   $image = addslashes(file_get_contents($_FILES['upload_img']['tmp_name'])); //SQL Injection defence!
-     //   $image_name = addslashes($_FILES['upload_img']['name']);  
         
-        if(isset($_FILES['upload_img']) === true &&
-            (($_FILES["upload_img"]["type"] == "image/gif") || 
+        if(isset($_FILES['upload_img']) === true && //if there is an image
+            (($_FILES["upload_img"]["type"] == "image/gif") || //check type
             ($_FILES["upload_img"]["type"] == "image/jpeg") || 
             ($_FILES["upload_img"]["type"] == "image/jpg") ||
             ($_FILES["upload_img"]["type"] == "image/pjpeg") || 
             ($_FILES["upload_img"]["type"] == "image/png") &&
-            ($_FILES["upload_img"]["size"] < 2097152)) ){
+            ($_FILES["upload_img"]["size"] < 2097152)) ){ // if file size is under 2 MB
                 $imageName = addslashes($_FILES['upload_img']['name']); 
                 $targetDir = "uploads/";
                 $fileName = basename($_FILES["upload_img"]["name"]);
@@ -76,7 +71,7 @@
                 move_uploaded_file($_FILES["upload_img"]["tmp_name"], $targetFilePath);
             } else {
                 echo '<script>alert("Please upload image of gif/jpeg/pjpeg/png type and of size under 2 MB");</script>';
-                die();
+                exit();
         };
 
         $recipe = $db->prepare('
