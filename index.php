@@ -15,11 +15,20 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
     <title>Receptor</title>
-
+    <script language="JavaScript">
+    function showInput() {
+      document.getElementById('display').innerHTML =
+        document.getElementById("user_input").value;
+    }
+  </script>
 </head>
 <body>
-
-<body>
+<div id="container">
+  <div class="row">
+    <div class="col">
+          <p></p>
+    </div>
+  <div class="col col2">
 <!-- navigation-->
 <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -35,9 +44,9 @@
   </form>
 -->
 </div>
-<div id="container">
-  <h2 class='logo'>Receptor</h2>
-  <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+
+    <h2 class='logo'>Logo placeholder</h2>
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
 
 
   <section id="searchRecipeSection">
@@ -101,7 +110,7 @@
     ?>
 
     <!-- Form for recipe-->
-    <form action="" method='POST' enctype='multipart/form-data'>
+    <form action="" method='POST' enctype='multipart/form-data' autocomplete='off'>
     <div class="form-group">
         <label for='recipeName'>Name</label>
         <input type="text" name="recipeName" id="recipeName">
@@ -146,6 +155,11 @@
   <section id='donationSection'>
     information about donation
   </section>
+  </div>
+      <div class="col"></div>
+    </div>
+    
+  </div>
 <script>
   //Navigation open/close
   function openNav() {
