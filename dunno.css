@@ -120,7 +120,7 @@ form.example::after {
 #container{
   overflow: hidden;
 }
-
+/* at start sections are hidden */
 #addRecipeSection, #aboutSection, #donationSection {
   display: none;
 }
