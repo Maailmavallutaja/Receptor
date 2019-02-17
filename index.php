@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=980, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="dunno.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -25,9 +25,7 @@
 <body>
 <div id="container">
   <div class="row">
-    <div class="col">
-          <p></p>
-    </div>
+<div class="col-xs-1"></div>
   <div class="col col2">
 <!-- navigation-->
 <div id="mySidenav" class="sidenav">
@@ -44,48 +42,14 @@
   </form>
 -->
 </div>
+<div class='smallbutton'>
 
+
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()"> <img src="justbutton.png" onmouseover="this.src='activebutton.png';" onmouseout="this.src='justbutton.png';"></span>
+</div>
     <h2 class='logo'>Logo placeholder</h2>
-    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
-
-
   <section id="searchRecipeSection">
-      <form method='GET' action='' autocomplete='off'>
-        <div class="form-group">
-            <label for='searchWord'></label>
-            <input type="text" name="searchWord" id="searchWord">
-            <button class="btn btn-primary" type="submit" >Send</button>
-        </div>
-    </form>
-    <?php
-    ini_set('display_errors', 'on');
-    $db = new PDO('mysql:host=127.0.0.1:3306;dbname=receptor', 'root', '');
-    //get the results based on search
-    if (!empty($_GET['searchWord'])){
-      $searchWord = $_GET['searchWord'];
-      $getRecipes = $db-> prepare("SELECT * FROM recipes WHERE recipeName = '$searchWord'");
-      $getRecipes -> execute();
-      $recipes = $getRecipes->fetchAll();
-    }
-    //display the recipies
-    $count = $recipes -> rowcount();
-    if($count > 0){
-    foreach ($recipes as $recipe): ?>
-            <div class="displayRecipe" id='<?php echo $recipe['id'] . "recipe";?>'>
-                <h2><?php echo $recipe['recipeName']; ?></h2>
-                <?php $path = 'uploads/';
-                      $location =  $path . $recipe['imageName'];
-                echo '<img src= "'.$location.'" alt="Recipe image"/>' ?>
-                <h3>Preparation time<?php echo $recipe['prepTime']; ?></h3><br>
-                <h3>Cooking time<?php echo $recipe['cookTime']; ?></h3><br>
-                <h3>Ingredients<?php echo $recipe['ingredients']; ?></h3><br>
-                <p>Instructions<br><?php echo $recipe['instructions']; ?></p><br>
-                <p>Optional add ons<?php echo $recipe['optAddOns']; ?></p><br>
-            </div>
-    <?php endforeach;
-    } else{
-      echo 'Your search returned ' .$count. 'results';
-    } ?>
+      This is search
   </section>
 
   <section id="addRecipeSection">
@@ -182,7 +146,7 @@
     </form>
 
   </section>
-
+<div class="div-xs-1"></div>
   <section id='aboutSection'>
     About information
   </section>
@@ -191,8 +155,7 @@
     information about donation
   </section>
   </div>
-      <div class="col"></div>
-    </div>
+
     
   </div>
 <script>
