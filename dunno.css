@@ -14,12 +14,20 @@ body {
   bottom: 0;
   right: 0;
 }
+.imageContainer {
+  width:428px; 
+  height:300px; 
+  background-image: url(untitled-1.png);
+  margin: auto;
+  
+}
 .logo {
-  margin-top: 10px;
+  margin-top: 93px;
   text-align: center;
   font-family: "Indie Flower";
   color: rgb(243, 82, 203);
-  background-image: url("untitled-1.png");
+  text-shadow: -1px 0 rgb(247, 243, 44), 0 1px rgb(206, 163, 163), 1px 0 rgb(49, 6, 6), 0 -1px rgb(252, 211, 236);
+  ;
 }
 #searchRecipeSection {
   font-family: "Handlee";
