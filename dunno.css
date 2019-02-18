@@ -19,7 +19,7 @@ body {
   text-align: center;
   font-family: "Indie Flower";
   color: rgb(243, 82, 203);
-  ;
+  background-image: url("untitled-1.png");
 }
 #searchRecipeSection {
   font-family: "Handlee";
@@ -121,7 +121,7 @@ form.example::after {
   font-size: 25px;
   color: white;
   display: block;
-  transition: 0.3s;
+  transition: 0.2s;
 
 }
 
