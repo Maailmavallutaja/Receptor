@@ -1,0 +1,153 @@
+body {
+    background-image: url("bg.png");
+    background-position: center;
+    font-family: 'Montserrat', sans-serif;
+}
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rgb(250, 215, 60);
+  color: red;
+  text-align: center;
+  z-index: auto;
+}
+.donate {
+  text-align: center;
+  background-color: lightgrey;
+  width: 200px;
+  border: 10px solid green;
+  padding: 10px;
+  margin: 10px;
+}
+.card-footer {
+  background-color: blueviolet;
+}
+.mySideNav {
+    position: absolute;
+    bottom: 8px;
+    right: 16px;
+}
+
+.sidenav {
+    position: absolute;
+    bottom: 8px;
+    right: 16px;
+    
+}
+
+* {
+    box-sizing: border-box;
+}
+  
+  form.example input[type=text] {
+    padding: 10px;
+    font-size: 17px;
+    border: 1px solid grey;
+    float: left;
+    width: 80%;
+    background: #f1f1f1;
+  }
+  
+  form.example button {
+    float: left;
+    width: 20%;
+    padding: 10px;
+    background: #2196F3;
+    color: white;
+    font-size: 17px;
+    border: 1px solid grey;
+    border-left: none;
+    cursor: pointer;
+  }
+  
+  form.example button:hover {
+    background: #0b7dda;
+  }
+  
+  form.example::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+body {
+  font-family: Arial;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+form.example input[type=text] {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: left;
+  width: 80%;
+  background: #f1f1f1;
+}
+
+form.example button {
+  float: left;
+  width: 20%;
+  padding: 10px;
+  background: #2196F3;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
+}
+
+form.example button:hover {
+  background: #0b7dda;
+}
+
+form.example::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+</style> <style>
+            body {
+              font-family: "Lato", sans-serif;
+            }
+    .sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  left: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
