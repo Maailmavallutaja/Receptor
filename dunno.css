@@ -125,12 +125,19 @@ form.example::after {
   /* vertical-align: middle; */
 
 }
+@media only screen and (max-width: 600px) {  
+  .sidenav{
+    margin-top: 0px;
+
+  }
+}
 @media only screen and (min-width: 600px) {  
   .sidenav{
     margin-top: 15%;
 
   }
 }
+
 .sidenav a {
   padding: 8px 8px 8px 32px;
   text-decoration: none;
@@ -172,6 +179,7 @@ form.example::after {
   /* margin-left: 30%;
   margin-right: 30%; */
   background-image: url("background.png");
+  background-position: center;
 }
 @media only screen and (max-width: 600px){
   .col{
