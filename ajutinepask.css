@@ -5,43 +5,47 @@ body {
     height: 100vh;
 }
 
-
-.smallbutton {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-}
-
 .row {
   height:100vh;
+}
+
+.smallbutton {
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }
 .imageContainer {
   width:428px; 
   height:300px; 
   background-image: url(untitled-1.png);
   margin: auto;
+  
 }
-
-section{
-  width:428px; 
-  height:auto;
-  margin: auto;
-  font-family: "Handlee";
-  text-align: center;
-  align-content: center;
-  color: rgb(252, 238, 41);
-  max-height: 360 px; 
-}
-
-
 .logo {
   margin-top: 93px;
   text-align: center;
   font-family: "Indie Flower";
   color: rgb(243, 82, 203);
   text-shadow: -1px 0 rgb(247, 243, 44), 0 1px rgb(206, 163, 163), 1px 0 rgb(49, 6, 6), 0 -1px rgb(252, 211, 236);
+  ;
 }
-
+#searchRecipeSection {
+  font-family: "Handlee";
+  text-align: center;
+  color: rgb(252, 238, 41);
+}
+.mySideNav {
+    position: absolute;
+    bottom: 8px;
+    right: 16px;
+    font-family: "Handlee";
+}
+.sidenav {
+    position: absolute;
+    bottom: 8px;
+    right: 16px; 
+    font-family: "Handlee"; 
+}
 
   form.example input[type=text] {
     padding: 10px;
@@ -105,7 +109,6 @@ form.example::after {
   display: table;
 }
 
-
 .sidenav {
   height: 100%;
   width: 0;
@@ -113,11 +116,40 @@ form.example::after {
   z-index: 1;
   top: 0;
   left: 0;
+  /* background-color: #111; */
+  overflow-x: hidden;
   transition: 0.5s;
   padding-top: 60px;
   background-image: url("drawer.png");
   background-repeat: no-repeat;
-  overflow-x: hidden;
+  /* vertical-align: middle; */
+
+}
+@media only screen and (max-width: 600px) {  
+  .sidenav{
+    margin-top: 0px;
+
+  }
+}
+@media only screen and (min-width: 600px) {  
+  .sidenav{
+    margin-top: 15%;
+
+  }
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: white;
+  display: block;
+  transition: 0.2s;
+
+}
+
+.sidenav a:hover {
+  color: #bd1f7b;
 }
 
 .sidenav .closebtn {
@@ -128,24 +160,6 @@ form.example::after {
   margin-left: 50px;
 }
 
-.sidenav a {
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 25px;
-  color: white;
-  display: block;
-  transition: 0.3s;
-
-}
-
-.sidenav a:hover {
-  color: #bd1f7b;
-}
-
-.sidenav a:hover {
-  color: #bd1f7b;
-}
-
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
@@ -153,7 +167,7 @@ form.example::after {
 
 /* for section hide */
 #container{
-  overflow: auto;
+  overflow: hidden;
 }
 
 #addRecipeSection, #aboutSection, #donationSection {
@@ -167,44 +181,9 @@ form.example::after {
   background-image: url("background.png");
   background-position: center;
 }
-
 @media only screen and (max-width: 600px){
   .col{
     margin-left: 0px;
     margin-right: 0px; 
   }
-  .sidenav{
-    margin-top: 0px;
-  }
-}
-@media only screen and (min-width: 600px) {  
-  .sidenav{
-    margin-top: 15%;
-  }
-}
-
-.recipeContent{
-  color: rgb(214, 206, 88);
-  font-size: 16px;
-  font-weight: 400;
-  display:inline-block;
-
-}
-#searchRecipeSection h3{
-  font-size: 24px;
-
-}
-#searchRecipeSection p{
-  font-size: 24px;
-  
-}
-#searchRecipeSection img{
-  max-width:420px;
-  width: auto;
-  height: auto;
-}
-
-#donationSection p img{
-  width:30px;
-  height: auto;
 }

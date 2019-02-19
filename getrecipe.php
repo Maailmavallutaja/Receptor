@@ -37,41 +37,43 @@
   <h2 class='logo'>Receptor</h2>
   <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
 
-<form method='GET' action='' autocomplete='off'>
+<form method='GET' action=''>
     <div class="form-group">
-        <label for='searchWord'></label>
-        <input type="text" name="searchWord" id="searchWord">
+        <label for='recipeName'>Name</label>
+        <input type="text" name="recipeName" id="recipeName">
         <button class="btn btn-primary" type="submit" >Send</button>
     </div>
 </form>
 <?php
-
 ini_set('display_errors', 'on');
-$db = new PDO('mysql:host=127.0.0.1:3306;dbname=receptor', 'root', '');
+$db = new PDO('mysql:host=127.0.0.1:3306;dbname=test1', 'root', '');
+echo '<br>';
 
-
+$recipeQuery = $db->query('
+   SELECT * FROM `recipes`;
+');
+dump the query
+var_dump($users);
 //get the result of query
-
-if (!empty($_GET['searchWord'])){
-  $searchWord = $_GET['searchWord'];
-  //$getQuery = 
-  $getRecipes = $db-> prepare("SELECT * FROM recipes WHERE recipeName = '$searchWord'");
-  $getRecipes -> execute();
-  $recipes = $getRecipes->fetchAll();
+while ($user = $users->fetch(PDO::FETCH_ASSOC)){
+    echo $user['email'], '<br>', $user['f_name'], '<br>';
 }
- foreach ($recipes as $recipe): ?>
-        <div class="displayRecipe" id='<?php echo $recipe['id'] . "recipe";?>'>
-            <h2><?php echo $recipe['recipeName']; ?></h2>
-            <?php $path = 'uploads/';
-                  $location =  $path . $recipe['imageName'];
-            echo '<img src= "'.$location.'" alt="Recipe image"/>' ?>
-            <h3>Preparation time<?php echo $recipe['prepTime']; ?></h3><br>
-            <h3>Cooking time<?php echo $recipe['cookTime']; ?></h3><br>
-            <h3>Ingredients<?php echo $recipe['ingredients']; ?></h3><br>
-            <p>Instructions<br><?php echo $recipe['instructions']; ?></p><br>
-            <p>Optional add ons<?php echo $recipe['optAddOns']; ?></p><br>
+die();
+
+$users = $usersQuery -> fetchAll(PDO::FETCH_OBJ);
+if (!empty($_GET['user'])){
+    $userId = $db->quote ($_GET['user']);
+    echo $userId = (int) $_GET['user'];
+    $recipe = $db -> query ("SELECT * FROM users WHERE id = {$userId}");
+    var_dump($user -> fetchObject());
+
+?>
+<?php foreach ($users as $user):?>
+        <div class="user">
+            <h4><?php echo $user -> f_name; ?></h4>
+            <h4><?php echo $user -> email; ?></h4>
         </div>
-<?php endforeach; ?>
+<?php endforeach; ?> -->
 </div>
 
 

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Handlee|Pacifico|Indie+Flower" rel="stylesheet">
     <!-- bootstrap -->
@@ -26,73 +26,34 @@
 <body>
 <div id="container">
   <div class="row">
+<div class="col-xs-1"></div>
   <div class="col col2">
-  <!-- navigation-->
-    <div id="mySidenav" class="sidenav">
-      
-      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-      <a href="#searchRecipe" id='searchRecipe'>Search a recipe</a>
-      <a href="#addrecipe" id='addRecipe'>Add a recipe</a>
-      <a href="#about" id='about'>About</a>
-      <a href="#donate" id='donate'>Donate</a>
-        </div>
+<!-- navigation-->
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="#searchRecipe" id='searchRecipe'>Search a recipe</a>
+  <a href="#addrecipe" id='addRecipe'>Add a recipe</a>
+  <a href="#about" id='about'>About</a>
+  <a href="#donate" id='donate'>Donate</a>
+  
+<!-- no need currently
+  <p>Search</p>
+  <form class="example" action="/action_page.php" style="margin:auto;max-width:300px">
+    <input type="text" placeholder="Search.." name="search2">
+    <button type="submit"><i class="fa fa-search"></i></button>
+  </form>
+-->
+</div>
 
-    <div class='smallbutton'>
-      <span style="font-size:30px;cursor:pointer" onclick="openNav()"> <img src="justbutton.png" onmouseover="this.src='activebutton.png';" onmouseout="this.src='justbutton.png';"></span>
-        </div>
-        
-  <div class="imageContainer">.
-    <h1 class='logo'>Receptor</h1>
-     </div>
+<div class='smallbutton'>
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()"> <img src="justbutton.png" onmouseover="this.src='activebutton.png';" onmouseout="this.src='justbutton.png';"></span>
+</div>
 
-
+<div class="imageContainer">.
+    <h1 class='logo'>PLACEHOLDER</h1>
+</div>
   <section id="searchRecipeSection">
-
-    <form method='GET' action='' autocomplete='off'>
-        <div class="form-group">
-            <label for='searchWord'></label>
-            <input type="text" name="searchWord" id="searchWord">
-            <button class="btn btn-primary" type="submit" >Search</button>
-        </div>
-    </form>
-    <?php
-    //connect trough PDO
-    ini_set('display_errors', 'on');
-    $db = new PDO('mysql:host=127.0.0.1:3306;dbname=receptor', 'root', '');
-
-    //get the results based on search
-    $searchWord = '';
-    if (!empty($_GET['searchWord'])){
-      $searchWord = $_GET['searchWord'];
-      $getRecipes = $db-> prepare("SELECT * FROM recipes WHERE recipeName LIKE '%$searchWord%'");
-      $getRecipes -> execute();
-      $recipes = $getRecipes->fetchAll();
-
-      //display the recipies
-      foreach ($recipes as $recipe): ?>
-              
-                <h2><?php echo $recipe['recipeName']; ?></h2>
-                <?php $path = 'uploads/';
-                  $location =  $path . $recipe['imageName'];
-                echo '<img src= "'.$location.'" alt="Recipe image" />' ?>
-
-                <h3>Preparation time <div class="recipeContent"><?php echo $recipe['prepTime']; ?></div></h3><br>
-                <h3>Cooking time <div class="recipeContent"><?php echo $recipe['cookTime']; ?></div></h3><br>
-                <h3>Ingredients<br>
-                    <div class="recipeContent"><?php echo $recipe['ingredients']; ?></div></h3><br>
-              <p>Instructions<br>
-                <div class="recipeContent"><?php echo $recipe['instructions']; ?></div></p><br>
-              <p>Optional add ons 
-              <div class="recipeContent"><?php echo $recipe['optAddOns']; ?></div></p><br>
-          
-      <?php
-      endforeach;
-      // if no recipies returned, display notification
-      if($recipes == false){
-        echo 'Your search returned 0 results';
-      }
-    }
-     ?>
+      Search Results Appear Here
   </section>
 
   <section id="addRecipeSection">
@@ -189,30 +150,18 @@
     </form>
 
   </section>
+
   <section id='aboutSection'>
-   <p> Receptor is an open-source application </p>
-   <p> Current release 0.0.1 (Alpha) </p>
-   <p> Codebase available <a href='https://github.com/Maailmavallutaja/Receptor'>here </a><p>
-    <br>
-   <h4> Created by</h4><br>
-   <p>arch666</p>
-   <p>&&</p>
-   <p>maailmavallutaja</p>
-   <p>&&</p>
-   <p>HHenryRoos</p>
+    About information
   </section>
 
   <section id='donationSection'>
-      <p> You can donate to us (Maailmavallutaja) </p>
-      <p>
-      <img src="ethereum.svg" alt="ETH logo"><span><a href=https://etherscan.io/address/0xbeeb87e3914d3a7ca25344a09f2ef2815f202d9f> 0xbeEB87e3914d3A7cA25344A09F2ef2815f202d9F</a></span><br>
-      <img src='bitcoin.svg'alt='BTC logo'><span><a href='https://www.blockchain.com/btc/address/1CpjwPKQG5N4VQf6AtFpdoJCVxsovxzeGG'>  1CpjwPKQG5N4VQf6AtFpdoJCVxsovxzeGG</a></span>
+    information about donation
   </section>
-
-  <!-- End for row, col2 -->
-  </div>
   </div>
 
+    
+  </div>
 <script>
   //Navigation open/close
   function openNav() {
@@ -222,18 +171,10 @@
   function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
   }
-
   
   //Section switch hidden/visible
   // To do -> make into for loop
-  // Reset searchWord when opening new tab
     $(document).ready(function() {
-      
-      // $(document).on('click', function(){
-      //   if(document.getElementById("mySidenav").style.width == "250px"){
-      //   closeNav();
-      //   }
-      // });  
         $('#searchRecipe').on('click', function() {
             $('#searchRecipeSection').show();
             $('#addRecipeSection').hide();
